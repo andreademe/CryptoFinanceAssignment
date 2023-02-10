@@ -1,48 +1,45 @@
 package com.cryptofinance.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
 
-@JsonIgnoreProperties
 @Getter
 public class Order {
 
     @Setter
     private Long orderId;
 
-    private Long accountId;
     private BigDecimal priceLimit;
     private BigDecimal amount;
-
-    private OrderType orderType;
     private OrderSide orderSide;
     private String tradingSymbol;
+    private Account account;
 
     @Setter
     private boolean executed;
 
-    public Order(@JsonProperty("account_id") Long accountId,
-                 @JsonProperty("price_limit") BigDecimal priceLimit,
-                 @JsonProperty("amount") BigDecimal amount) {
-        this.accountId = accountId;
+    @Setter
+    private BigDecimal executionPrice;
+
+    public Order(BigDecimal priceLimit, BigDecimal amount, OrderSide orderSide, String tradingSymbol, Account account) {
         this.priceLimit = priceLimit;
         this.amount = amount;
-        this.orderType = OrderType.LIMIT;
-        this.orderSide = OrderSide.BUY;
-        this.tradingSymbol = "BTC-USD";
+        this.orderSide = orderSide;
+        this.tradingSymbol = tradingSymbol;
+        this.account = account;
     }
 
     @Override
     public String toString() {
-        return "LimitOrder{" +
-                "id=" + orderId +
-                ", accountId=" + accountId +
+        return "Order{" +
+                "orderId=" + orderId +
                 ", priceLimit=" + priceLimit +
                 ", amount=" + amount +
+                ", orderSide=" + orderSide +
+                ", tradingSymbol='" + tradingSymbol + '\'' +
+                ", executed=" + executed +
                 '}';
     }
 }
