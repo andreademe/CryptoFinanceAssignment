@@ -18,4 +18,12 @@ public class PriceRecord {
         this.price = price;
         this.timestamp = timestamp;
     }
+
+    @Override
+    public String toString() {
+        return "PriceRecord{" +
+                "price=" + price +
+                ", timestamp='" + timestamp + '\'' +
+                '}';
+    }
 }
