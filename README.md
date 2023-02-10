@@ -111,6 +111,8 @@ Response:
 
 * **fetchOrderDetails(order_id)**: Fetches order details and status
 
+Example: Fetch order details about order with id 0
+
 Request:
 * URL: `localhost:8080/camel/api/fetchOrderDetails?order_id=0`
 
